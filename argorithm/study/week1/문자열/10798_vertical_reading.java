@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+	10789 5개의 단어를 입력받아 세로로 읽었을 때의 문자열을 출력하는 문제
+*/
 class Main {
     public static void main(String[] args){
 		Scanner s = new Scanner(System.in);
