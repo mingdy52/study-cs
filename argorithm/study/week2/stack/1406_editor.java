@@ -19,43 +19,43 @@ class Main {
 		String initialString = br.readLine();
         int m = Integer.parseInt(br.readLine());
         
-        Stack<Character> leftStack = new Stack<>();
-        Stack<Character> rightStack = new Stack<>();
+        Stack<Character> leftStack = new Stack<>(); // 커서 왼쪽에 있는 문자들을 저장
+        Stack<Character> rightStack = new Stack<>(); // 커서 오른쪽에 있는 문자들을 저장
         
         for (char ch : initialString.toCharArray()) {
-            leftStack.push(ch);
+            leftStack.push(ch); // 우선 문자열을 왼쪽 스택에 추가
         }
         
         for (int i = 0; i < m; i++) {
             String command = br.readLine();
             
             switch (command.charAt(0)) {
-                case 'L':
-                    if (!leftStack.isEmpty()) {
-                        rightStack.push(leftStack.pop());
+                case 'L': 
+                    if (!leftStack.isEmpty()) { // 왼쪽 스택이 비어있지 않다면
+                        rightStack.push(leftStack.pop()); // 왼쪽 스택의 가장 위에 있는 문자를 오른쪽 스택으로 이동
                     }
                     break;
                 case 'D':
-                    if (!rightStack.isEmpty()) {
-                        leftStack.push(rightStack.pop());
+                    if (!rightStack.isEmpty()) { // 오른쪽 스택이 비어있지 않다면
+                        leftStack.push(rightStack.pop()); // 오른쪽 스택의 가장 위에 있는 문자를 왼쪽 스택으로 이동
                     }
                     break;
                 case 'B':
-                    if (!leftStack.isEmpty()) {
-                        leftStack.pop();
+                    if (!leftStack.isEmpty()) { // 왼쪽 스택이 비어있지 않다면
+                        leftStack.pop(); // 왼쪽 스택의 가장 위에 있는 문자를 삭제
                     }
                     break;
                 case 'P':
-                    leftStack.push(command.charAt(2));
+                    leftStack.push(command.charAt(2)); // 왼쪽 스택의 가장 위에 문자를 추가
                     break;
             }
         }
         
         StringBuilder result = new StringBuilder();
-        for (char ch : leftStack) {
+        for (char ch : leftStack) { // 왼쪽 스택에 있는 문자들을 순서대로 출력
             result.append(ch);
         }
-        while (!rightStack.isEmpty()) {
+        while (!rightStack.isEmpty()) { // 오른쪽 스택에 있는 문자들을 순서대로 출력
             result.append(rightStack.pop());
         }
         

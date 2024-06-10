@@ -4,18 +4,21 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+    1966 중요도가 높은 순서대로 출력하는 프린터
+	
+*/
 class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int round = Integer.parseInt(br.readLine());
 
 		for (int i = 0; i < round; i++) {
-			String[] docInfo = br.readLine().split(" ");
+			String[] docInfo = br.readLine(); "12 0"
+			int target = Integer.parseInt(docInfo.charAt(2));
+
 			String[] priorities = br.readLine().split(" ");
-			int target = Integer.parseInt(docInfo[1]);
-
 			Queue<Document> queue = new LinkedList<>();
-
 			for (int j = 0; j < priorities.length; j++) { // 문서의 중요도와 문서 인덱스를 큐에 추가
 				int priority = Integer.parseInt(priorities[j]);
 				queue.add(new Document(priority, j));

@@ -38,6 +38,4 @@ class Main {
 		return stack.isEmpty() ? "YES\n" : "NO\n"; // 스택이 비어있으면 올바른 괄호
 
 	}
-		
-	} 
 }

@@ -49,7 +49,7 @@ class Main {
 				case 'P':
 					iterator.add(commands.charAt(2)); // 해당 인덱스에 문자 추가
 					break;
-			}
+			} 
 		}
 
 		StringBuilder result = new StringBuilder();
