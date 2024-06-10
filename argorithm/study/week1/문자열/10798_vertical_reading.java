@@ -1,42 +1,32 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
-	10789 5개의 단어를 입력받아 세로로 읽었을 때의 문자열을 출력하는 문제
+	10798 5개의 단어를 입력받아 세로로 읽었을 때의 문자열을 출력하는 문제
 */
 class Main {
-    public static void main(String[] args){
-		Scanner s = new Scanner(System.in);
-		char[][] words = charProcess(s); // 입력된 문자열을 2차원 배열로 저장
-		String print = verticalRead(words); // 세로로 읽은 문자열
-		System.out.print(print);
-	}
+    public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		char[][] board = new char[5][15]; // 5개의 단어를 입력받아 세로로 읽었을 때의 문자열을 저장할 배열
 
-	public static char[][] charProcess(Scanner s) {
-		char[][] words = new char[5][15];
-
-		for(int i = 0; i < 5; i++) {
-			String word = s.nextLine();
-			for (int j = 0; j < word.length(); j++) {
-				words[i][j] = word.charAt(j);
+		for (int i = 0; i < 5; i++) {
+			String word = br.readLine();
+			for (int j = 0; j < word.length(); j++) { 
+				board[i][j] = word.charAt(j); // 입력받은 단어를 배열에 저장
 			}
 		}
 
-		return words;
-	}
-
-	public static String verticalRead(char[][] words) {
-		StringBuffer sb = new StringBuffer();
-
-		for(int i = 0; i < 15; i++) {
-			for (int j = 0; j < 5; j++) {
-				if (i < words[j].length  && words[j][i] != '\u0000') { // null 문자 제거
-					sb.append(words[j][i]);
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 5; j++) { // 세로로 읽기
+				if(0 < board[j].length && board[j][i] != '\u0000') { // 배열의 길이가 0보다 크고, null이 아니면 결과에 추가
+					result.append(board[j][i]);
 				}
 			}
 		}
 
-		return sb.toString();
+		System.out.println(result);
 	}
 
-    // 시간 복잡도: O(1) 
 }
