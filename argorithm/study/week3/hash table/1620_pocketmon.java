@@ -13,27 +13,27 @@ public class Main {
 		int n = Integer.parseInt(s[0]); // 포켓몬의 수
 		int m = Integer.parseInt(s[1]); // 문제의 수
 
-		Map<Integer, String> map1 = new HashMap<>(); 
-		Map<String, Integer> map2 = new HashMap<>();
+		Map<String, Integer> map1 = new HashMap<>();
+		String[] pocketmonArr = new String[n];
 		int idx = 1; // 포켓몬 번호
 		for (int i = 0; i < n; i++) {
 			String pocketmon = br.readLine();
-			map1.put(idx, pocketmon);
-			map2.put(pocketmon, idx);
+			map1.put(pocketmon, idx);
+			pocketmonArr[i] = pocketmon;
 			idx++;
 		}
 
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < m; i++) {
 			String q = br.readLine(); // 문제
-			boolean number = isNumber(q); // 숫자인지 확인
+			int number = isNumber(q); // 숫자인지 확인
 
-			if(number) {
-                // 숫자인 경우 int로 변환하여 map1에서 찾음
-				result.append(map1.get(Integer.parseInt(q))).append("\n");
+			if(number >= 0) {
+				// 숫자인 경우 pocketmonArr에서 찾음
+				result.append(pocketmonArr[number - 1] + "\n");
 			} else {
-                // 문자인 경우 map2에서 찾음
-				result.append(map2.get(q)).append("\n");
+				// 문자인 경우 map1에서 찾음
+				result.append(map1.get(q) + "\n");
 			}
 
 		}
@@ -41,12 +41,11 @@ public class Main {
 		System.out.println(result);
 	}
 
-	public static boolean isNumber(String q) {
+	public static int isNumber(String q) {
 		try {
-			Integer.parseInt(q); 
-			return true;
+			return Integer.parseInt(q);
 		} catch (NumberFormatException  e) { // 숫자로 변환할 수 없는 경우
-			return false; // false
+			return -1;
 		}
 	}
 }

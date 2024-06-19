@@ -5,6 +5,7 @@ import java.util.*;
 
 /**
     10816 숫자 카드 2
+	카드에 적힌 숫자의 개수를 구하는 문제
 */
 public class Main {
 	public static void main(String[] args) throws IOException {
