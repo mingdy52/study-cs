@@ -5,6 +5,8 @@ import java.util.*;
 
 /**
     2164 카드2
+	맨 마지막에 버려지는 카드 번호를 구하는 문제
+	ex) 1234 -> 234 -> 342 ...
 */
 class Main {
 	public static void main(String[] args) throws IOException {
