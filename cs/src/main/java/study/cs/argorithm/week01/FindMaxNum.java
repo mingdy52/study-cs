@@ -11,7 +11,26 @@ public class FindMaxNum {
 
     }
 
-    private static int findMaxNum(int[] nums) {
+    private static int findMaxNum(int[] array) {
+        for (int number : array) {
+            boolean isMaxNum = true;
+
+            for (int compareNumber : array) {
+                if (number < compareNumber) {
+                    isMaxNum = false;
+                    break;
+                }
+            }
+            if (isMaxNum) {
+                return number;
+            }
+        }
+
+        return 0; // 배열이 비어있는 경우
+    }
+
+
+    private static int findMaxNum2(int[] nums) {
         int max = 0;
         for (int num : nums) {
             if(num >= max) max = num;
