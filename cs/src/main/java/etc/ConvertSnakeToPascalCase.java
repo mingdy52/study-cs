@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class ConvertSnakeToPascalCase {
 
     public static void main(String[] args) throws IOException {
-        convertSnakeToPascalCase("find_prime_list_under_number");
+        convertSnakeToPascalCase("");
     }
 
 

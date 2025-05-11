@@ -2,6 +2,12 @@ package study.cs.argorithm.week02.linkedList;
 
 public class MyLinkedList<T> {
 
+    public MyLinkedList() {}
+
+    public MyLinkedList(T data) {
+        this.head = new Node<>(data);
+    }
+
     private Node<T> head;
 
     public void append(T data) {
@@ -92,8 +98,11 @@ public class MyLinkedList<T> {
         System.out.println(sb);
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return this.head == null;
     }
 
+    public Node<T> getHead() {
+        return head;
+    }
 }
