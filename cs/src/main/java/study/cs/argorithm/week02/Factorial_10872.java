@@ -19,12 +19,20 @@ public class Factorial_10872 {
 
         factorial(inputN);
         System.out.println(SUM);
+
+        int result = factorial2(inputN);
+        System.out.println(result);
     }
 
     private static void factorial(int n) {
         if(n < 1) return;
         SUM *= n;
         factorial(--n);
+    }
+
+    private static int factorial2(int n) {
+        if (n <= 1) return 1;
+        return n * factorial2(n - 1);
     }
 
 }
