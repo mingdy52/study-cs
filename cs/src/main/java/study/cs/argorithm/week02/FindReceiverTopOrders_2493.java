@@ -3,6 +3,7 @@ package study.cs.argorithm.week02;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Stack;
 
 public class FindReceiverTopOrders_2493 {
@@ -37,15 +38,26 @@ public class FindReceiverTopOrders_2493 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int topCount = Integer.parseInt(br.readLine());
+        br.readLine();
         String[] input = br.readLine().split(" ");
 
-        int[] height = new int[topCount];
-        for (int i = 0; i < topCount; i++) {
-            height[i] = Integer.parseInt(input[i]);
+        int[] height = Arrays.stream(input)
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int[] receivers = findSignalReceivers(height);
+
+        StringBuilder sb = new StringBuilder();
+        for (int val : receivers) {
+            sb.append(val).append(" ");
         }
 
-        int[] answer = new int[topCount];
+        System.out.println(sb);
+    }
+
+    private static int[] findSignalReceivers(int[] height) {
+        int topCount = height.length;
+        int[] receivers = new int[topCount];
         Stack<Integer> topIndex = new Stack<>();
 //        6 9 5 7 4
 //        1 2 3 4 5
@@ -57,20 +69,24 @@ public class FindReceiverTopOrders_2493 {
             }
 
             if(topIndex.isEmpty()) {
-                answer[i] = 0;
+                receivers[i] = 0;
             } else {
-                answer[i] = topIndex.peek() + 1;
+                receivers[i] = topIndex.peek() + 1;
             }
 
             topIndex.push(i);
         }
 
-        StringBuilder sb = new StringBuilder();
-        for (int val : answer) {
-            sb.append(val).append(" ");
-        }
-
-        System.out.println(sb);
+        return receivers;
     }
+
+/*
+    O(N)
+      각 탑의 인덱스는 스택에 한 번만 push, 그리고 한 번만 pop 된다.
+      while 루프가 중첩처럼 보여 O(N²)로 같지만 실제로는 스택의 요소가 총 N개만 들어가고 나가므로 선형이다.
+      즉, 전체적으로 스택 연산의 총합이 최대 2N (N번 push + N번 pop)
+      반복문 안의 while 루프가 있지만 전체 합산 기준으로는 O(N)
+*/
+
 
 }
