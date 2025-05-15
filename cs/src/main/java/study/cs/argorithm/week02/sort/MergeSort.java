@@ -1,25 +1,34 @@
 package study.cs.argorithm.week02.sort;
 
+import java.util.Arrays;
+
 public class MergeSort {
 
     public static void main(String[] args) {
-        int[] array1_1 = new int[]{-7, -1, 9, 40};
-        int[] array1_2 = new int[]{5, 6, 10, 11};
+        int[] array1 = new int[]{-7, -1, 9, 40, 5, 6, 10, 11};
+        int[] array2 = new int[]{-1, 2, 3, 5, 40, 10,78,100};
+        int[] array3 = new int[]{-1,-1,0, 1, 6, 9, 10};
 
-        int[] array2_1 = new int[]{-1, 2, 3, 5, 40};
-        int[] array2_2 = new int[]{10,78,100};
-
-        int[] array3_1 = new int[]{-1,-1,0};
-        int[] array3_2 = new int[]{1, 6, 9, 10};
-
-        int[] array1 = merge(array1_1, array1_2);
-        int[] array2 = merge(array2_1, array2_2);
-        int[] array3 = merge(array3_1, array3_2);
+        array1 = mergeSort(array1);
+        array2 = mergeSort(array2);
+        array3 = mergeSort(array3);
 
         System.out.println("정답 = [-7, -1, 5, 6, 9, 10, 11, 40] / 현재 풀이 값 = " + printArray(array1));
         System.out.println("정답 = [-1, 2, 3, 5, 10, 40, 78, 100] / 현재 풀이 값 = " + printArray(array2));
         System.out.println("정답 = [-1, -1, 0, 1, 6, 9, 10] / 현재 풀이 값 = " + printArray(array3));
     }
+
+    private static int[] mergeSort(int[] array) {
+        if(array.length < 2)
+            return array;
+
+        int mid = array.length / 2;
+
+        int[] left = mergeSort(Arrays.copyOfRange(array, 0, mid));
+        int[] right = mergeSort(Arrays.copyOfRange(array, mid, array.length));
+
+        return merge(left, right);
+    }// O(nlogn)
 
     /**
          배열의 앞부분과 뒷부분의 두 그룹으로 나누어 각각 정렬한 후 병합하는 작업을 반복하는 알고리즘
